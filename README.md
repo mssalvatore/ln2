@@ -30,7 +30,11 @@ That output makes a lot of sense. I think of links as files that point to other
 files; the output of `ls` is consistent with my mental model of what a link is.
 Intuitively, I want to specify the creation of links in the same way that I
 inspect them (and understand them), and there is no mnemonic or memory device
-that will change that.
+that will change that [<img
+src="https://www.wppluginsforyou.com/wp-content/uploads/2020/05/tooltips.png"
+width="15px" />](## "Besides, I don't want to spend my mental cycles
+using a mneumonic device every time I need to use `ln`. I'd prefer not to have
+to think about it because it behaves the way I expect it to.").
 
 To make matters worse, the man pages add more confusion.
 
