@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+function usage {
+    echo "Make links between files using an intuitive, memorable syntax."
+    echo ""
+    echo "Usage: $script_name [OPTION]... LINK_NAME \\> TARGET"
+    echo "  or:  $script_name [OPTION]... TARGET \\< LINK_NAME"
+    echo ""
+    echo "       See LN(1) for a description of the available options."
+    exit 1
+}
+
+args=("$@")
+script_name="$(basename "$0")"
+
+if [ "$#" -lt 3 ] || \
+   [[ "${args[*]}" == *'-h'* ]] || \
+   [[ "${args[*]}" == *'--help'* ]]; then
+    usage
+fi
+
+operand_2=${args[-1]}
+shift -p args
+operation=${args[-1]}
+shift -p args
+operand_1=${args[-1]}
+shift -p args
+
+if [[ "$operand_1" == "-"* ]]; then
+    usage
+fi
+
+if [[ "$operation" == '>' ]]; then
+    target="$operand_2"
+    link_name="$operand_1"
+elif [[ "$operation" == '<' ]]; then
+    target="$operand_1"
+    link_name="$operand_2"
+else
+    usage
+fi
+
+ln "${args[@]}" "$target" "$link_name"
